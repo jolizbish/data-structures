@@ -1,33 +1,35 @@
-var Stack = function() {
+var Queue = function() {
   var someInstance = {
-    'items' : 0
+    'items': 0
   };
 
   // Use an object with numeric keys to store values
   var storage = {};
-  // var test = someInstance.size().toString();
 
   // Implement the methods below
-  someInstance.push = function(value) {
+
+  someInstance.enqueue = function(value) {
     someInstance.items++;
     storage[someInstance.size() - 1] = value;
   };
-//  console.log('storage', storage);
-  someInstance.pop = function() {
+
+  someInstance.dequeue = function() {
     if (someInstance.items === 0) {
       return 0;
     } else {
-      var popped = storage[someInstance.size() - 1];
-      delete storage[someInstance.size() - 1];
+      var dequeued = storage[0];
+      for (var key in storage) {
+        storage[key] = storage[key + 1];
+        delete storage[someInstance.size()];
+      }
       someInstance.items--;
-      return popped;
+      return dequeued;
     }
   };
 
   someInstance.size = function() {
     return someInstance.items;
   };
-  
-    // console.log(someInstance.size().toString());
+
   return someInstance;
 };
