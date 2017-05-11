@@ -13,21 +13,25 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  this.children.push({'value': value, 'children': []});
-  _.extend(this.children, treeMethods);
+  this.children.push(Tree(value));
 };
 
 treeMethods.contains = function(target) {
-  var isFound = false;
-  for (var i = 0; i < this.children.length; i++) {
-    if (this.children[i].value === target) {
-      // console.log(this.children[i].value);
-      isFound = true;
-    } else if (this.children[i].children && this.children[i].children.length > 0) {
-      this.children[i].children.contains(target);
+  
+  var isContained = function(family, targetVal) {
+    if (family.value === targetVal) {
+      return true;
+    } else if (family.children !== null) {
+      var result = false;
+      for (var i = 0; result === false && i < family.children.length; i++) {
+        result = isContained(family.children[i], targetVal);
+      }
+      return result;
     }
-  }
-  return isFound;
+  };
+  
+  return isContained(this, target);
+
 };
 
 
