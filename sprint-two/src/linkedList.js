@@ -5,26 +5,52 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
     list.tail = Node(value);
-  };
-
-  list.removeHead = function() {
     if (list.head === null) {
-      return null;
-    } else {
-      var oldHead = list.head;
-      list.head = Node(list.head.next);
-      return oldHead;
+      list.head = list.tail;
+    } else if (list.head.next === null) {
+      list.head.next = list.tail;
     }
+    // console.log('head: ', list.head);
+    // console.log('tail: ', list.tail);
+    // console.log('list.head.next: ', list.head.next);
+  };
+  
+  list.removeHead = function() {
+    var oldHead = list.head;
+    list.head = list.head.next;
+    return oldHead.value;
   };
 
   list.contains = function(target) {
-    for (var key in list) {
-      if (list[key] === target) {
+    // if (list.head === target) {
+    //   return true;
+    // } else if (list.tail === target) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    
+    
+    var current = list.head;
+    console.log('current: ', current.value);
+    console.log('target: ', target);
+    while (current !== null) {
+      if (current.value === target) {
         return true;
-      } else {
+      } else if (current.next === null) {
         return false;
+      } else {
+        current = current.next;
       }
     }
+    // for (var key in list) {
+    //   console.log('list[key]', node.);
+    //   // if (list[key] === target) {
+    //   //   return true;
+    //   // } else {
+    //   //   return false;
+    //   // }
+    // }
   };
 
   return list;
@@ -38,6 +64,8 @@ var Node = function(value) {
 
   return node;
 };
+
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
