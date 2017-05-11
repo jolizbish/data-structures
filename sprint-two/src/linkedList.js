@@ -22,15 +22,6 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-    // if (list.head === target) {
-    //   return true;
-    // } else if (list.tail === target) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-    
-    
     var current = list.head;
     console.log('current: ', current.value);
     console.log('target: ', target);
@@ -43,14 +34,6 @@ var LinkedList = function() {
         current = current.next;
       }
     }
-    // for (var key in list) {
-    //   console.log('list[key]', node.);
-    //   // if (list[key] === target) {
-    //   //   return true;
-    //   // } else {
-    //   //   return false;
-    //   // }
-    // }
   };
 
   return list;
