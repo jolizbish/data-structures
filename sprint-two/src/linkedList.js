@@ -42,3 +42,5 @@ var Node = function(value) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+// add test comment to make sure pushes are going ot hte right place
