@@ -19,6 +19,7 @@ treeMethods.addChild = function(value) {
 treeMethods.contains = function(target) {
   
   var isContained = function(family, targetVal) {
+    debugger;
     if (family.value === targetVal) {
       return true;
     } else if (family.children !== null) {
