@@ -7,14 +7,15 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  var bucket = [];
+  var tuple = [k, v];
+  var containsK = false;
+  var tupleIndex = null;
+  
   if (this._storage[index] === undefined) {
-    var bucket = [];
     this._storage[index] = bucket;
-    var tuple = [k, v];
     this._storage[index].push(tuple);
   } else {
-    var containsK = false;
-    var tupleIndex = null;
     for (var i = 0; i < this._storage[index].length; i++) {
       if (this._storage[index][i][0] === k) {
         containsK = true;
@@ -24,15 +25,14 @@ HashTable.prototype.insert = function(k, v) {
     if (containsK) {
       this._storage[index][tupleIndex][1] = v;
     } else {
-      var tuple = [k, v];
       this._storage[index].push(tuple);
     }
   }
-  console.log('bucket', bucket);
-  console.log('tuple', tuple);
-  console.log('storage', this._storage);
-  console.log('k', k);
-  console.log('v', v);
+  // console.log('bucket', bucket);
+  // console.log('tuple', tuple);
+  // console.log('storage', this._storage);
+  // console.log('k', k);
+  // console.log('v', v);
 };
 
 HashTable.prototype.retrieve = function(k) {
